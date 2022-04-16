@@ -3,7 +3,11 @@ import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import FacebookProvider from 'next-auth/providers/facebook'
 
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
+import clientPromise from './lib/mongodb'
+
 export default NextAuth({
+  adapter: MongoDBAdapter(clientPromise),
   session: {
     jwt: true
   },
