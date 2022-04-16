@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 
+import GoogleProvider from 'next-auth/providers/google'
 import GithubProvider from 'next-auth/providers/github'
 import FacebookProvider from 'next-auth/providers/facebook'
 
@@ -12,6 +13,10 @@ export default NextAuth({
     jwt: true
   },
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET
+    }),
     GithubProvider({
       clientId: process.env.GUTHUB_CLIENT_ID,
       clientSecret: process.env.GUTHUB_CLIENT_SECRET

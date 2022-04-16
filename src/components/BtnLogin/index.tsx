@@ -1,11 +1,22 @@
+import { useUserForm } from 'context/UserFormContext'
+import { AppProvider } from 'next-auth/providers'
 import { signIn } from 'next-auth/react'
+
 import * as S from './styles'
 
-const BtnLogin = ({ provider }) => {
+type Props = {
+  provider?: AppProvider
+}
+
+const BtnLogin = ({ provider }: Props) => {
+  const { setOpen } = useUserForm()
+
   return (
     <div>
-      <S.Button onClick={() => signIn(provider.id)}>
-        Entrar com {provider.name}
+      <S.Button
+        onClick={() => (provider?.name ? signIn(provider?.id) : setOpen(true))}
+      >
+        {`${provider?.name || 'Email & Senha'}`}
       </S.Button>
     </div>
   )

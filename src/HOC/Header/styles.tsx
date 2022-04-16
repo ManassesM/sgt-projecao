@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import LogoutIcon from '@mui/icons-material/Logout'
+
 export const SubTitle = styled.p`
   color: #fff;
 `
@@ -22,9 +24,17 @@ export const Logo = styled.div`
   }
 `
 
+export const Logout = styled(LogoutIcon)`
+  position: absolute;
+  right: 35px;
+
+  cursor: pointer;
+`
+
 export const Bar = styled.header`
   width: auto;
   background-color: #4a70a8;
+  height: 98px;
 
   display: flex;
   justify-content: center;

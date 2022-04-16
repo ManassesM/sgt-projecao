@@ -6,6 +6,8 @@ import { Header } from '../HOC/Header'
 
 import GlobalStyle from '../styles/global'
 import theme from '../styles/theme'
+import UserFormProvider from 'context/UserFormContext'
+import AuthProvider from 'context/AuthContext'
 
 const MyApp: React.FC<AppProps> = ({
   Component,
@@ -13,10 +15,14 @@ const MyApp: React.FC<AppProps> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
-        <GlobalStyle />
-      </ThemeProvider>
+      <AuthProvider>
+        <UserFormProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+            <GlobalStyle />
+          </ThemeProvider>
+        </UserFormProvider>
+      </AuthProvider>
     </SessionProvider>
   )
 }
