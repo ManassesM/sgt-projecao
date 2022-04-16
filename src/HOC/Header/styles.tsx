@@ -23,7 +23,7 @@ export const Logo = styled.div`
 `
 
 export const Bar = styled.header`
-  min-height: 98px;
+  width: auto;
   background-color: #4a70a8;
 
   display: flex;
