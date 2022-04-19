@@ -14,6 +14,7 @@ export const BoxLogin = styled.div`
   -webkit-box-shadow: 0px 0px 13px 3px rgba(199, 199, 199, 0.64);
   -moz-box-shadow: 0px 0px 13px 3px rgba(199, 199, 199, 0.64);
   padding: 25px;
+
   p {
     font-size: 17px;
     text-transform: uppercase;

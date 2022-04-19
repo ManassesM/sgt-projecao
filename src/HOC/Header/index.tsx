@@ -1,22 +1,17 @@
+import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn'
+import { signOut } from 'next-auth/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { signOut } from 'next-auth/react'
-
-import nookies from 'nookies'
-
-import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn'
-
 import faviconLogo from '../../assets/logo.svg'
-
 import * as S from './styles'
 
 const HOCHeader = () => {
   const { route } = useRouter()
 
   function handleSignOut() {
-    signOut()
-    nookies.destroy(null, 'sgt.token')
+    signOut({ callbackUrl: '/login' })
   }
+
   return (
     <>
       <Head>

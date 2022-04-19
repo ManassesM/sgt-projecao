@@ -1,11 +1,11 @@
 // This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
-import { MongoClient } from 'mongodb'
+import { MongoClient, MongoClientOptions } from 'mongodb'
 
 const url = process.env.DATABASE_URL
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true
-}
+} as MongoClientOptions
 
 let client
 let clientPromise

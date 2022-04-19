@@ -1,47 +1,64 @@
-import { GetServerSideProps } from 'next'
-import { getSession } from 'next-auth/react'
+import FacebookIcon from '@mui/icons-material/Facebook'
+import GitHubIcon from '@mui/icons-material/GitHub'
+import GoogleIcon from '@mui/icons-material/Google'
+import PersonIcon from '@mui/icons-material/Person'
+import BtnLogin from 'components/BtnLogin'
+import UsersForm from 'containers/Forms/UserForm'
+import { useUserForm } from 'context/UserFormContext'
+import { BoxLogin } from 'layout/BoxLogin'
+import { BtnWrapper } from 'layout/BtnWrapper'
+import { Container } from 'layout/Container'
+import { NextPage } from 'next'
+import { getProviders, getSession } from 'next-auth/react'
 
-import nookies from 'nookies'
-
-const Home: React.FC<any> = props => {
-  console.log(props)
+const Login: NextPage<any> = ({ props }) => {
+  const { google, github, facebook } = props.providers
+  const { open } = useUserForm()
 
   return (
-    <div>
-      <main>
-        <h1>Hello World</h1>
-      </main>
-    </div>
+    <Container>
+      <BoxLogin>
+        {!open ? (
+          <>
+            <p>Entre ou crie uma conta gratuita</p>
+            <BtnWrapper>
+              <GoogleIcon />
+              <BtnLogin provider={google} />
+            </BtnWrapper>
+            <BtnWrapper>
+              <GitHubIcon />
+              <BtnLogin provider={github} />
+            </BtnWrapper>
+            <BtnWrapper>
+              <FacebookIcon />
+              <BtnLogin provider={facebook} />
+            </BtnWrapper>
+            <BtnWrapper>
+              <PersonIcon />
+              <BtnLogin />
+            </BtnWrapper>
+          </>
+        ) : (
+          <UsersForm />
+        )}
+      </BoxLogin>
+    </Container>
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async context => {
-  const session = await getSession(context)
-  const cookies = nookies.get(context)
+Login.getInitialProps = async ({ req, res }) => {
+  const session = await getSession({ req })
 
-  const googleToken = cookies['next-auth.session-token']
-  const sgtToken = cookies['sgt.token']
-
-  const hasToken = googleToken || sgtToken
-
-  if (!hasToken) {
-    return {
-      redirect: {
-        destination: '/login',
-        permanent: false
-      }
-    }
+  if (session) {
+    res.writeHead(301, { Location: '/app' })
+    res.end()
   } else {
     return {
       props: {
-        session,
-        token: {
-          google: googleToken || '',
-          sgt: sgtToken || ''
-        }
+        providers: await getProviders()
       }
     }
   }
 }
 
-export default Home
+export default Login

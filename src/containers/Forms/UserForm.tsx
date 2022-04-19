@@ -1,12 +1,8 @@
+import { FormLabel, Input } from '@mui/material'
+import Button from 'components/Button'
+import { useAuth } from 'context/AuthContext'
 import { useUserForm } from 'context/UserFormContext'
 import { useForm } from 'react-hook-form'
-
-import { useAuth } from 'context/AuthContext'
-
-import { FormLabel, Input } from '@mui/material'
-
-import Button from 'components/Button'
-
 import * as S from './styles'
 
 interface IUserFormData {

@@ -1,8 +1,8 @@
-import { createContext, useContext, useState, useEffect } from 'react'
-import { setCookie, parseCookies } from 'nookies'
 import Router from 'next/router'
-
+import { parseCookies, setCookie } from 'nookies'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { recoverUserInformation, signInRequest } from 'services/auth'
+
 
 type User = {
   name: string

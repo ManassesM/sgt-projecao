@@ -1,6 +1,6 @@
+import LogoutIcon from '@mui/icons-material/Logout'
 import styled from 'styled-components'
 
-import LogoutIcon from '@mui/icons-material/Logout'
 
 export const SubTitle = styled.p`
   color: #fff;

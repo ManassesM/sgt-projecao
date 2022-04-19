@@ -24,7 +24,7 @@
     "**/*.ts",
     "**/*.tsx",
     "additional.d.ts",
-    "src/pages/api/auth/[...nextauth].js"
+    "src/pages/api/auth/[...nextauth].ts"
   ],
   "exclude": ["node_modules"]
 }

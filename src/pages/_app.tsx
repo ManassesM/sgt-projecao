@@ -1,13 +1,11 @@
-import { AppProps } from 'next/app'
+import AuthProvider from 'context/AuthContext'
+import UserFormProvider from 'context/UserFormContext'
 import { SessionProvider } from 'next-auth/react'
+import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
-
 import { Header } from '../HOC/Header'
-
 import GlobalStyle from '../styles/global'
 import theme from '../styles/theme'
-import UserFormProvider from 'context/UserFormContext'
-import AuthProvider from 'context/AuthContext'
 
 const MyApp: React.FC<AppProps> = ({
   Component,
