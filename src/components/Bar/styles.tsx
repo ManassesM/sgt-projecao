@@ -32,7 +32,7 @@ export const Search = styled.div`
   background: #4a70a8;
   padding: 5px 10px;
   border-radius: 15px;
-  width: 410px;
+  width: auto;
 
   svg {
     color: #b9d5ff;
