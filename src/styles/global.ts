@@ -10,5 +10,9 @@ export default createGlobalStyle`
     background: ${({ theme }) => theme.colors.background};
     color: ${({ theme }) => theme.colors.text};
     font: 400 16px 'Roboto', sans-serif;
+
+    position: absolute;
+    width: 100%;
+    height: 100%;
   }
 `

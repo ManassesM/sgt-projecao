@@ -1,4 +1,6 @@
 import { Task } from '@prisma/client'
+import Kanban from 'container/Kanban'
+import { Background } from 'layout/Background'
 import { prisma } from 'lib/prisma'
 import { GetServerSideProps } from 'next'
 import { useSession } from 'next-auth/react'
@@ -7,17 +9,13 @@ type Props = {
   tasks: Task[]
 }
 
-const Home: React.FC<any> = ({ tasks }: Props) => {
+const Home: React.FC<unknown> = ({ tasks }: Props) => {
   const { data } = useSession()
 
   return (
-    <div>
-      <main>
-        <h1>Hello World</h1>
-        {JSON.stringify(data)}
-        <h1>Tasks</h1>
-      </main>
-    </div>
+    <Background>
+      <Kanban />
+    </Background>
   )
 }
 

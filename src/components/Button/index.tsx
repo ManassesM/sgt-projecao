@@ -1,7 +1,6 @@
 import React from 'react'
 import * as S from './styles'
 
-
 interface IButton {
   title: string
   type: 'button' | 'submit' | 'reset'

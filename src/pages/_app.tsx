@@ -1,5 +1,3 @@
-import AuthProvider from 'context/AuthContext'
-import UserFormProvider from 'context/UserFormContext'
 import { SessionProvider } from 'next-auth/react'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
@@ -13,14 +11,10 @@ const MyApp: React.FC<AppProps> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <AuthProvider>
-        <UserFormProvider>
-          <ThemeProvider theme={theme}>
-            <Component {...pageProps} />
-            <GlobalStyle />
-          </ThemeProvider>
-        </UserFormProvider>
-      </AuthProvider>
+      <ThemeProvider theme={theme}>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </ThemeProvider>
     </SessionProvider>
   )
 }

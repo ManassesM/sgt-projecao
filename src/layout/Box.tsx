@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const BoxLogin = styled.div`
+export const Box = styled.div`
   min-width: 400px;
   min-height: 200px;
   display: flex;
