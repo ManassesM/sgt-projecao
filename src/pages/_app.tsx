@@ -1,4 +1,5 @@
 import TasksProvider from 'context/TasksContext'
+import UserProvider from 'context/UserContext'
 import { SessionProvider } from 'next-auth/react'
 import { AppProps } from 'next/app'
 import { ThemeProvider } from 'styled-components'
@@ -13,11 +14,12 @@ const MyApp: React.FC<AppProps> = ({
   return (
     <SessionProvider session={session}>
       <TasksProvider>
-        <ThemeProvider theme={theme}>
-          <Component {...pageProps} />
-
-          <GlobalStyle />
-        </ThemeProvider>
+        <UserProvider>
+          <ThemeProvider theme={theme}>
+            <Component {...pageProps} />
+            <GlobalStyle />
+          </ThemeProvider>
+        </UserProvider>
       </TasksProvider>
     </SessionProvider>
   )

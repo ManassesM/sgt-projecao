@@ -19,7 +19,7 @@ const HOCHeader = () => {
   const { route } = useRouter()
 
   function handleSignOut() {
-    signOut({ callbackUrl: '/login' })
+    signOut({ callbackUrl: '/' })
   }
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const HOCHeader = () => {
           <p>Gerenciamento de</p>
           <p>Tarefas</p>
         </S.Logo>
-        {route !== '/' && (
+        {route === '/app' && (
           <S.User>
             <S.UserProps>
               <p>{user?.name}</p>
