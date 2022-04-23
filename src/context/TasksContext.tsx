@@ -1,9 +1,8 @@
-import { Task } from '@prisma/client'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 type TasksContextType = {
-  tasks: Task[]
-  setTasks: (_: Task[]) => void
+  tasks: string
+  setTasks: (_: string) => void
 }
 
 type TasksProviderType = {
@@ -13,7 +12,7 @@ type TasksProviderType = {
 const TasksContext = createContext({} as TasksContextType)
 
 export default function TasksProvider({ children }: TasksProviderType) {
-  const [tasks, setTasks] = useState<Task[] | null>(null)
+  const [tasks, setTasks] = useState<string | null>(null)
 
   return (
     <TasksContext.Provider value={{ tasks, setTasks }}>

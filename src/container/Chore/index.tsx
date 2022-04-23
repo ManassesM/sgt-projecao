@@ -6,14 +6,13 @@ import * as S from './styles'
 type Props = {
   tasks: Task[]
 }
-const Chores: React.FC<Props> = ({ tasks }) => {
-  return (
-    <S.Tasks>
-      {tasks?.map(task => (
-        <Chore key={task.id} {...task} />
-      ))}
-    </S.Tasks>
-  )
-}
+
+const Chores: React.FC<Props> = ({ tasks }) => (
+  <S.Tasks>
+    {tasks?.map((task: Task) => (
+      <Chore key={task.id} task={task} />
+    ))}
+  </S.Tasks>
+)
 
 export default Chores

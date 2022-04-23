@@ -8,7 +8,6 @@ type InputErrorProps = {
 }
 
 const InputError: React.FC<InputErrorProps> = ({ type, field }) => {
-  console.log({ type, field })
   return <S.Message>{errors[field][type]}</S.Message>
 }
 

@@ -1,6 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import InputError from 'components/InputError'
 import { useToggleForm } from 'context/FormContext'
+import { useTasks } from 'context/TasksContext'
 import { useUsers } from 'context/UserContext'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -16,6 +17,7 @@ type FormProps = {
 }
 
 const Form: React.FC = () => {
+  const { setTasks } = useTasks()
   const validationSchema = yup.object({
     title: yup.string().required(),
     description: yup.string(),

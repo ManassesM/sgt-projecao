@@ -15,6 +15,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
         image
       }
     })
-    return res.status(200).json({})
   }
+  return res.status(200).json({})
 }

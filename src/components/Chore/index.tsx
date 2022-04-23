@@ -3,15 +3,12 @@ import { Task } from '@prisma/client'
 import React from 'react'
 import * as S from './styles'
 
-const Chore: React.FC = props => {
-  const { title, description, priority } = props as Task
-
-  // const [{ isDragging }, dragRef] = useDrag({
-  //   item: { type: 'CARD' },
-  //   collect: monitor => ({
-  //     isDragging: monitor.isDragging()
-  //   })
-  // })
+type Props = {
+  key: string
+  task: Task
+}
+const Chore: React.FC<Props> = ({ task }) => {
+  const { title, description, priority } = task
 
   return (
     <S.Container priority={priority}>
