@@ -2,8 +2,8 @@ import { User } from '@prisma/client'
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 type UserContextType = {
-  users: User[]
-  setUsers: (_: User[]) => void
+  user: User
+  setUser: (_: User) => void
 }
 
 type UserProviderType = {
@@ -13,17 +13,17 @@ type UserProviderType = {
 const UserContext = createContext({} as UserContextType)
 
 export default function TasksProvider({ children }: UserProviderType) {
-  const [users, setUsers] = useState<User[] | null>(null)
+  const [user, setUser] = useState<User | null>(null)
 
   return (
-    <UserContext.Provider value={{ users, setUsers }}>
+    <UserContext.Provider value={{ user, setUser }}>
       {children}
     </UserContext.Provider>
   )
 }
 
 export function useUsers() {
-  const { users, setUsers } = useContext(UserContext)
+  const { user, setUser } = useContext(UserContext)
 
-  return { users, setUsers }
+  return { user, setUser }
 }

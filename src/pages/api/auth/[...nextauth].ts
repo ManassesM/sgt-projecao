@@ -23,7 +23,7 @@ export default NextAuth({
     async signIn({ user }) {
       const { email, image, name } = user
 
-      api.post('/create', {
+      await api.post('/users/create', {
         name,
         email,
         image

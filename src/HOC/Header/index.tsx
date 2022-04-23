@@ -7,15 +7,17 @@ import { useEffect, useState } from 'react'
 import faviconLogo from '../../assets/logo.svg'
 import * as S from './styles'
 
-type UserType = {
-  email?: string
-  image?: string
+type User = {
+  id?: string
   name?: string
+  email?: string
+  image?: string | null
 }
 
 const HOCHeader = () => {
-  const [user, setUser] = useState<UserType | null>(null)
   const [dropDown, setDropDown] = useState(false)
+  const [user, setUser] = useState<User | null>(null)
+
   const { route } = useRouter()
 
   function handleSignOut() {

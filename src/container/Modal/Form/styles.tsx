@@ -10,8 +10,9 @@ export const Btn = styled.button`
   border-radius: 5px;
 
   background: #4a70a8;
-  color: #a8cbff;
+  color: #f0f0f0;
   text-transform: uppercase;
+  font-weight: bold;
 
   cursor: pointer;
   transition: all 0.2s ease-in;

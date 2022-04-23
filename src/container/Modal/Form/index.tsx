@@ -1,5 +1,8 @@
+import { useToggleForm } from 'context/FormContext'
+import { useUsers } from 'context/UserContext'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { api } from 'utils/axios'
 import * as S from './styles'
 
 type FormProps = {
@@ -10,19 +13,20 @@ type FormProps = {
 
 const Form: React.FC = () => {
   const { register, handleSubmit } = useForm()
+  const { setToggleForm } = useToggleForm()
+  const { user } = useUsers()
 
   async function handleFormSubmit(formData: FormProps) {
     const { title, description, priority } = formData
 
-    await fetch('http://localhost:3000/tasks/create', {
-      method: 'POST',
-      body: JSON.stringify({
-        title,
-        description,
-        priority: Number(priority)
-      })
-      // headers: { 'Content-Type': 'application/json' }
+    await api.post('/tasks/create', {
+      title,
+      description,
+      priority,
+      user
     })
+
+    setToggleForm(false)
   }
 
   return (

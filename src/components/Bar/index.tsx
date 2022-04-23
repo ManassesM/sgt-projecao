@@ -1,12 +1,13 @@
 import AddCircleIcon from '@mui/icons-material/AddCircle'
 import SearchIcon from '@mui/icons-material/Search'
 import Modal from 'container/Modal'
+import { useToggleForm } from 'context/FormContext'
 import React, { useState } from 'react'
 import * as S from './styles'
 
 const Bar: React.FC = () => {
   const [open, setOpen] = useState(false)
-  const [modal, setModal] = useState(false)
+  const { toggleForm, setToggleForm } = useToggleForm()
 
   return (
     <>
@@ -21,11 +22,11 @@ const Bar: React.FC = () => {
         <S.AddTask>
           <AddCircleIcon
             sx={{ fontSize: '30px' }}
-            onClick={() => setModal(true)}
+            onClick={() => setToggleForm(true)}
           />
         </S.AddTask>
       </S.Container>
-      {modal && <Modal setModal={setModal} />}
+      {toggleForm && <Modal />}
     </>
   )
 }
