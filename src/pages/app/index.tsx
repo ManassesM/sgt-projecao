@@ -18,7 +18,7 @@ const Home: React.FC<unknown> = ({ data }) => {
 export const getServerSideProps: GetServerSideProps = async () => {
   const tasks = await prisma.task.findMany()
 
-  console.log(tasks)
+  // console.log(tasks)
   const data = tasks?.map(task => {
     return {
       id: task.id,

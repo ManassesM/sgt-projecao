@@ -432,7 +432,7 @@
 
 "@next-auth/mongodb-adapter@^1.0.3":
   version "1.0.3"
-  resolved "https://registry.npmjs.org/@next-auth/mongodb-adapter/-/mongodb-adapter-1.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/@next-auth/mongodb-adapter/-/mongodb-adapter-1.0.3.tgz#9ba4daaf9d789bc1eda29bad2ec6aef3330d1bd9"
   integrity sha512-oO8OYjMhYx8s5qsdWWD+yNCqszCO7ewg6UkDhvfY0KhJRbcoOAwOgYYH5Bo4ZGJDqmIw8g6JeGipP7+xLa2Ynw==
 
 "@next/env@12.1.5":
@@ -997,6 +997,13 @@ axe-core@^4.3.5:
   version "4.4.1"
   resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.4.1.tgz"
   integrity sha512-gd1kmb21kwNuWr6BQz8fv6GNECPBnUasepcoLbekws23NVBLODdsClRZ+bQ8+9Uomf3Sm3+Vwn0oYG9NvwnJCw==
+
+axios@^0.26.1:
+  version "0.26.1"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.26.1.tgz#1ede41c51fcf51bbbd6fd43669caaa4f0495aaa9"
+  integrity sha512-fPwcX4EvnSHuInCMItEhAGnaSEXRBjtzh9fOtsE6E1G6p7vl7edEeZe11QHf18+6+9gR5PbKV/sGKNaD8YaMeA==
+  dependencies:
+    follow-redirects "^1.14.8"
 
 axobject-query@^2.2.0:
   version "2.2.0"
@@ -1935,6 +1942,11 @@ flatted@^3.1.0:
   resolved "https://registry.npmjs.org/flatted/-/flatted-3.2.5.tgz"
   integrity sha512-WIWGi2L3DyTUvUrwRKgGi9TwxQMUEqPOPQBVi71R96jZXJdFskXEmf54BoZaS1kknGODoIGASGEzBUYdyMCBJg==
 
+follow-redirects@^1.14.8:
+  version "1.14.9"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.9.tgz#dd4ea157de7bfaf9ea9b3fbd85aa16951f78d8d7"
+  integrity sha512-MQDfihBQYMcyy5dhRDJUHcw7lb2Pv/TuE6xP1vyraLukNDHKbDxDNaOE3NbCAdKQApno+GPRyo1YAp89yCjK4w==
+
 fs-extra@8.1.0:
   version "8.1.0"
   resolved "https://registry.npmjs.org/fs-extra/-/fs-extra-8.1.0.tgz"
@@ -2576,9 +2588,21 @@ mongodb-connection-string-url@^2.5.2:
     "@types/whatwg-url" "^8.2.1"
     whatwg-url "^11.0.0"
 
-mongodb@4.5.0, mongodb@^4.5.0:
+mongodb@4.5.0:
   version "4.5.0"
   resolved "https://registry.npmjs.org/mongodb/-/mongodb-4.5.0.tgz"
+  integrity sha512-A2l8MjEpKojnhbCM0MK3+UOGUSGvTNNSv7AkP1fsT7tkambrkkqN/5F2y+PhzsV0Nbv58u04TETpkaSEdI2zKA==
+  dependencies:
+    bson "^4.6.2"
+    denque "^2.0.1"
+    mongodb-connection-string-url "^2.5.2"
+    socks "^2.6.2"
+  optionalDependencies:
+    saslprep "^1.0.3"
+
+mongodb@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/mongodb/-/mongodb-4.5.0.tgz#d74c2008567b606dccef220f62a44cd7b934eb92"
   integrity sha512-A2l8MjEpKojnhbCM0MK3+UOGUSGvTNNSv7AkP1fsT7tkambrkkqN/5F2y+PhzsV0Nbv58u04TETpkaSEdI2zKA==
   dependencies:
     bson "^4.6.2"
@@ -2643,10 +2667,10 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=
 
-next-auth@^4.3.2:
-  version "4.3.2"
-  resolved "https://registry.npmjs.org/next-auth/-/next-auth-4.3.2.tgz"
-  integrity sha512-yj9HN9p81Fg3dkrq4Y0FxjfgupiABac7o+ve47j5GPLjo1qE2FFX1pr7g7mwQ1HDUCoGhLmgBpFBR8+pdWgFfQ==
+next-auth@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/next-auth/-/next-auth-4.3.3.tgz#5ff892e73648a0f33c2af0e9d7cafda729f63ae7"
+  integrity sha512-bUs+oOOPT18Pq/+4v9q4PA/DGoVoAX6jwY7RTfE/akFXwlny+y/mNS6lPSUwpqcHjljqBaq34PQA3+01SdOOPw==
   dependencies:
     "@babel/runtime" "^7.16.3"
     "@panva/hkdf" "^1.0.1"
@@ -2999,10 +3023,10 @@ react-dom@18.0.0:
     loose-envify "^1.1.0"
     scheduler "^0.21.0"
 
-react-hook-form@^7.29.0:
-  version "7.29.0"
-  resolved "https://registry.npmjs.org/react-hook-form/-/react-hook-form-7.29.0.tgz"
-  integrity sha512-NcJqWRF6el5HMW30fqZRt27s+lorvlCCDbTpAyHoodQeYWXgQCvZJJQLC1kRMKdrJknVH0NIg3At6TUzlZJFOQ==
+react-hook-form@^7.30.0:
+  version "7.30.0"
+  resolved "https://registry.yarnpkg.com/react-hook-form/-/react-hook-form-7.30.0.tgz#c9e2fd54d3627e43bd94bf38ef549df2e80c1371"
+  integrity sha512-DzjiM6o2vtDGNMB9I4yCqW8J21P314SboNG1O0obROkbg7KVS0I7bMtwSdKyapnCPjHgnxc3L7E5PEdISeEUcQ==
 
 react-is@^16.13.1, react-is@^16.7.0:
   version "16.13.1"

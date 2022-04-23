@@ -2,6 +2,7 @@ import NextAuth from 'next-auth'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
+import { api } from 'utils/axios'
 
 export default NextAuth({
   providers: [
@@ -18,6 +19,19 @@ export default NextAuth({
       clientSecret: process.env.FACEBOOK_CLIENT_SECRET
     })
   ],
+  callbacks: {
+    async signIn({ user }) {
+      const { email, image, name } = user
+
+      api.post('/create', {
+        name,
+        email,
+        image
+      })
+
+      return true
+    }
+  },
   pages: {
     signIn: '/'
   }
