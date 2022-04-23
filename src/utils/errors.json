@@ -1,0 +1,9 @@
+{
+  "title": {
+    "required": "Nome é um campo obrigatório"
+  },
+  "priority": {
+    "required": "Prioridade é um campo obrigatório",
+    "matches": "Prioridade deve ser entre 1 e 3"
+  }
+}

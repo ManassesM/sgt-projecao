@@ -36,9 +36,27 @@ export const ModalContainer = styled.section`
   bottom: 50%;
   transform: translate(50%, 50%);
 
-  height: 420px;
-  width: 420px;
+  height: 440px;
+  width: 360px;
   border-radius: 5px;
+
+  overflow-y: scroll;
+
+  scrollbar-width: thin;
+  scrollbar-color: #ccdfff;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #ccdfff;
+    border-radius: 5px;
+  }
 
   box-shadow: 0px 0px 10px 3px rgba(84, 84, 84, 1);
   -webkit-box-shadow: 0px 0px 10px 3px rgba(84, 84, 84, 1);
