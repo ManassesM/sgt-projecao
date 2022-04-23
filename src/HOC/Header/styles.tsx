@@ -25,7 +25,7 @@ export const Dropdown = styled.div`
   height: 35px;
 
   background: #f0f0f0;
-  border-radius: 15px;
+  border-radius: 5px;
   padding: 0 8px;
 
   display: flex;

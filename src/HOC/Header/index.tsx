@@ -23,10 +23,8 @@ const HOCHeader = () => {
   }
 
   useEffect(() => {
-    getSession().then(({ user }) => setUser(user))
+    getSession().then(data => data && setUser(data?.user))
   }, [])
-
-  console.log(user)
 
   return (
     <>
@@ -41,7 +39,7 @@ const HOCHeader = () => {
           <p>Gerenciamento de</p>
           <p>Tarefas</p>
         </S.Logo>
-        {route !== '/login' && (
+        {route !== '/' && (
           <S.User>
             <S.UserProps>
               <p>{user?.name}</p>

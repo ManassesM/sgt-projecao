@@ -6,5 +6,5 @@ export const Background = styled.div`
   background: #b9d5ff;
 
   /* height: 100%; */
-  border-radius: 15px;
+  border-radius: 5px;
 `

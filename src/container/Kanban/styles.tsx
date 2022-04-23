@@ -6,11 +6,13 @@ export const Priority = styled.div`
   align-items: center;
 
   height: 50px;
-  background: #4a70a8;
-  border-radius: 15px;
+  background: #a8cbff;
+  border-radius: 5px;
 
-  color: #f0f0f0;
+  color: #4a70a8;
   font-size: 24px;
+  font-weight: bold;
+  text-transform: uppercase;
 `
 
 export const Column = styled.section`
