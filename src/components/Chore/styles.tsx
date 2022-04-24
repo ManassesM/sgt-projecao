@@ -1,5 +1,6 @@
 import CircleIcon from '@mui/icons-material/Circle'
 import DeleteIcon from '@mui/icons-material/Delete'
+import EditIcon from '@mui/icons-material/Edit'
 import styled from 'styled-components'
 
 export const Description = styled.div`
@@ -29,19 +30,35 @@ export const PriorityIcon = styled(CircleIcon)<{ priority: number }>`
   color: ${({ priority }) => priority === 2 && '#efff74'};
   color: ${({ priority }) => priority === 3 && '#ff7474'};
 `
+
+export const PenIcon = styled(EditIcon)`
+  transition: all 0.2s ease-in;
+  color: #72df6a;
+
+  &:hover {
+    color: #41963a;
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+`
+
 export const TrashIcon = styled(DeleteIcon)`
+  transition: all 0.2s ease-in;
+  color: #ff7474;
+
+  &:hover {
+    color: #b63c3c;
+    transform: scale(1.1);
+    filter: brightness(1.2);
+  }
+`
+
+export const BottomIcons = styled.div`
   position: absolute;
   right: 0;
   bottom: 0;
 
   margin: 10px 15px;
-  color: #ff7474;
-
-  transition: all 0.2s ease-in;
-  &:hover {
-    transform: scale(1.1);
-    filter: brightness(1.2);
-  }
 `
 
 export const Container = styled.section`

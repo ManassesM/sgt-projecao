@@ -1,7 +1,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import InputError from 'components/InputError'
 import { useToggleForm } from 'context/FormContext'
-import { useTasks } from 'context/TasksContext'
+import { useTask } from 'context/TaskContext'
 import { useUsers } from 'context/UserContext'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -13,11 +13,23 @@ import * as S from './styles'
 type FormProps = {
   title: string
   description: string
-  priority: string
+  priority: number
+}
+
+const getDefaultValues = (task: FormProps) => {
+  return {
+    title: task?.title || '',
+    description: task?.description || '',
+    priority: task?.priority || 0
+  }
 }
 
 const Form: React.FC = () => {
-  const { setTasks } = useTasks()
+  const { task } = useTask()
+  const { user } = useUsers()
+
+  const defaultValues = getDefaultValues(task)
+
   const validationSchema = yup.object({
     title: yup.string().required(),
     description: yup.string(),
@@ -28,21 +40,26 @@ const Form: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm({
-    resolver: yupResolver(validationSchema)
-  })
+  } = useForm({ defaultValues, resolver: yupResolver(validationSchema) })
   const { setToggleForm } = useToggleForm()
-  const { user } = useUsers()
 
   async function handleFormSubmit(formData: FormProps) {
     const { title, description, priority } = formData
 
-    await api.post('/tasks/create', {
-      title,
-      description,
-      priority,
-      user
-    })
+    task
+      ? await api.post('/tasks/update', {
+          id: task.id,
+          title,
+          description,
+          priority,
+          user
+        })
+      : await api.post('/tasks/create', {
+          title,
+          description,
+          priority,
+          user
+        })
 
     setToggleForm(false)
   }
@@ -68,7 +85,7 @@ const Form: React.FC = () => {
         )}
       </S.Wrap>
       <S.WrapBtn>
-        <S.Btn>CRIAR</S.Btn>
+        <S.Btn>{task ? 'EDITAR' : 'CRIAR'}</S.Btn>
       </S.WrapBtn>
     </S.Form>
   )

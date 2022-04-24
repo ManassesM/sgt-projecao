@@ -18,8 +18,7 @@ export const Btn = styled.button`
   transition: all 0.2s ease-in;
 
   &:hover {
-    filter: brightness(1.03);
-    transform: scale(1.02);
+    filter: brightness(1.07);
   }
 `
 
@@ -28,6 +27,7 @@ export const TextArea = styled.textarea`
   border-radius: 5px;
   border: 1px solid #4a70a8;
   padding: 5px;
+  resize: none;
 
   color: #4a70a8;
   font-size: 17px;

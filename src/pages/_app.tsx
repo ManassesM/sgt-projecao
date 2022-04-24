@@ -1,4 +1,5 @@
 import ToggleFormProvider from 'context/FormContext'
+import TaskProvider from 'context/TaskContext'
 import TasksProvider from 'context/TasksContext'
 import UserProvider from 'context/UserContext'
 import { SessionProvider } from 'next-auth/react'
@@ -15,14 +16,16 @@ const MyApp: React.FC<AppProps> = ({
   return (
     <SessionProvider session={session}>
       <TasksProvider>
-        <UserProvider>
-          <ToggleFormProvider>
-            <ThemeProvider theme={theme}>
-              <Component {...pageProps} />
-              <GlobalStyle />
-            </ThemeProvider>
-          </ToggleFormProvider>
-        </UserProvider>
+        <TaskProvider>
+          <UserProvider>
+            <ToggleFormProvider>
+              <ThemeProvider theme={theme}>
+                <Component {...pageProps} />
+                <GlobalStyle />
+              </ThemeProvider>
+            </ToggleFormProvider>
+          </UserProvider>
+        </TaskProvider>
       </TasksProvider>
     </SessionProvider>
   )
