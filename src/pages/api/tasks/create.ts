@@ -10,7 +10,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
   })
 
-  await prisma.task.create({
+  const task = await prisma.task.create({
     data: {
       title,
       description,
@@ -19,5 +19,5 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
   })
 
-  return res.status(200).json({})
+  return res.status(200).json({ task })
 }

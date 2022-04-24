@@ -6,6 +6,7 @@ import { prisma } from 'lib/prisma'
 import { GetServerSideProps } from 'next'
 import { getSession } from 'next-auth/react'
 import { useEffect } from 'react'
+import { getAllTasks } from 'services/task'
 
 const Home: React.FC<unknown> = ({ tasks, user }) => {
   const { setUser } = useUsers()
@@ -32,13 +33,7 @@ export const getServerSideProps: GetServerSideProps = async ctx => {
     }
   })
 
-  const userTasks = await prisma.task.findMany({
-    where: {
-      userId: currentUser.id
-    }
-  })
-
-  const tasks = JSON.stringify(userTasks)
+  const tasks = await getAllTasks(currentUser.id)
 
   return {
     props: {

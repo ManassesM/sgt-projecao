@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import FacebookProvider from 'next-auth/providers/facebook'
 import GitHubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
-import { api } from 'utils/axios'
+import { createUser } from 'services/user'
 
 export default NextAuth({
   providers: [
@@ -22,12 +22,7 @@ export default NextAuth({
   callbacks: {
     async signIn({ user }) {
       const { email, image, name } = user
-
-      await api.post('/users/create', {
-        name,
-        email,
-        image
-      })
+      await createUser({ name, email, image })
 
       return true
     }

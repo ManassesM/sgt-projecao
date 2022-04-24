@@ -1,5 +1,6 @@
 import { Task } from '@prisma/client'
 
 export const priority = (number: number, tasks: Task[]): Task[] => {
-  return tasks?.filter(({ priority }) => priority === number)
+  const list = tasks?.filter((l: Task) => l.priority === number)
+  return list?.filter(({ priority }) => priority === number)
 }

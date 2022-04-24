@@ -1,5 +1,5 @@
 import React from 'react'
-import errors from 'utils/errors.json'
+import errors from 'utils/validation/errors.json'
 import * as S from './styles'
 
 type InputErrorProps = {

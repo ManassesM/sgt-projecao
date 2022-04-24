@@ -5,18 +5,17 @@ import { useTask } from 'context/TaskContext'
 import { useUsers } from 'context/UserContext'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { api } from 'utils/axios'
-import { number } from 'utils/validation'
-import * as yup from 'yup'
+import { createTask, updateTask } from 'services/task'
+import { validationSchema } from 'utils/validation/validation'
 import * as S from './styles'
 
-type FormProps = {
+type DefaultValuesProps = {
   title: string
   description: string
   priority: number
 }
 
-const getDefaultValues = (task: FormProps) => {
+const getDefaultValues = (task: DefaultValuesProps) => {
   return {
     title: task?.title || '',
     description: task?.description || '',
@@ -30,12 +29,6 @@ const Form: React.FC = () => {
 
   const defaultValues = getDefaultValues(task)
 
-  const validationSchema = yup.object({
-    title: yup.string().required(),
-    description: yup.string(),
-    priority: yup.string().matches(number)
-  })
-
   const {
     register,
     handleSubmit,
@@ -43,23 +36,12 @@ const Form: React.FC = () => {
   } = useForm({ defaultValues, resolver: yupResolver(validationSchema) })
   const { setToggleForm } = useToggleForm()
 
-  async function handleFormSubmit(formData: FormProps) {
+  async function handleFormSubmit(formData: DefaultValuesProps) {
     const { title, description, priority } = formData
 
     task
-      ? await api.post('/tasks/update', {
-          id: task.id,
-          title,
-          description,
-          priority,
-          user
-        })
-      : await api.post('/tasks/create', {
-          title,
-          description,
-          priority,
-          user
-        })
+      ? updateTask({ id: task.id, title, description, priority, user })
+      : createTask({ title, description, priority, user })
 
     setToggleForm(false)
   }

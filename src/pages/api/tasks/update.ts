@@ -10,7 +10,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
   })
 
-  await prisma.task.update({
+  const task = await prisma.task.update({
     where: {
       id: activityId
     },
@@ -22,5 +22,5 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
   })
 
-  return res.status(200).json({})
+  return res.status(200).json({ task })
 }

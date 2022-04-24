@@ -2,20 +2,21 @@ import { Task } from '@prisma/client'
 import { useToggleForm } from 'context/FormContext'
 import { useTask } from 'context/TaskContext'
 import React from 'react'
-import { api } from 'utils/axios'
+import { deleteTask } from 'services/task'
 import * as S from './styles'
 
 type Props = {
   key: string
   task: Task
 }
+
 const Chore: React.FC<Props> = ({ task }) => {
   const { setToggleForm } = useToggleForm()
   const { setTask } = useTask()
   const { id, title, description, priority } = task
 
-  function handleDelete() {
-    api.delete(`/tasks/delete?userId=${id}`)
+  async function handleDelete() {
+    await deleteTask(id)
   }
 
   function handleEdit() {
