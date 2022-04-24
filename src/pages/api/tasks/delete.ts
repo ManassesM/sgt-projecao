@@ -2,11 +2,17 @@ import { prisma } from 'lib/prisma'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  const { userId } = req.query
+  const { taskId } = req.query
 
-  await prisma.task.delete({
-    where: { id: userId.toString() }
+  const deletedTask = await prisma.task.delete({
+    where: { id: taskId.toString() }
   })
 
-  return res.status(200).json({})
+  const tasks = await prisma.task.findMany({
+    where: {
+      userId: deletedTask.userId.toString()
+    }
+  })
+
+  return res.status(200).json({ tasks })
 }

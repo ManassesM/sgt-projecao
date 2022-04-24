@@ -19,14 +19,16 @@ export async function updateTask({
   description,
   priority,
   user
-}: Props): Promise<Task> {
-  return api.post('/tasks/update', {
-    id,
-    title,
-    description,
-    priority,
-    user
-  })
+}: Props): Promise<Task[]> {
+  return api
+    .post('/tasks/update', {
+      id,
+      title,
+      description,
+      priority,
+      user
+    })
+    .then(({ data }) => data?.tasks)
 }
 
 export async function createTask({
@@ -35,14 +37,18 @@ export async function createTask({
   priority,
   user
 }: Props): Promise<Task> {
-  return api.post('/tasks/create', {
-    title,
-    description,
-    priority,
-    user
-  })
+  return api
+    .post('/tasks/create', {
+      title,
+      description,
+      priority,
+      user
+    })
+    .then(({ data }) => data?.task)
 }
 
-export async function deleteTask(id: string): Promise<void> {
-  api.delete(`/tasks/delete?userId=${id}`)
+export async function deleteTask(id: string): Promise<Task[]> {
+  return api
+    .delete(`/tasks/delete?taskId=${id}`)
+    .then(({ data }) => data?.tasks)
 }

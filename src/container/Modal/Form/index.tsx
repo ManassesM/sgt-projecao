@@ -2,6 +2,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import InputError from 'components/InputError'
 import { useToggleForm } from 'context/FormContext'
 import { useTask } from 'context/TaskContext'
+import { useTasks } from 'context/TasksContext'
 import { useUsers } from 'context/UserContext'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -25,7 +26,9 @@ const getDefaultValues = (task: DefaultValuesProps) => {
 
 const Form: React.FC = () => {
   const { task } = useTask()
+  const { tasks, setTasks } = useTasks()
   const { user } = useUsers()
+  const { setToggleForm } = useToggleForm()
 
   const defaultValues = getDefaultValues(task)
 
@@ -34,14 +37,28 @@ const Form: React.FC = () => {
     handleSubmit,
     formState: { errors }
   } = useForm({ defaultValues, resolver: yupResolver(validationSchema) })
-  const { setToggleForm } = useToggleForm()
 
   async function handleFormSubmit(formData: DefaultValuesProps) {
     const { title, description, priority } = formData
 
-    task
-      ? updateTask({ id: task.id, title, description, priority, user })
-      : createTask({ title, description, priority, user })
+    if (task) {
+      const upTask = await updateTask({
+        id: task.id,
+        title,
+        description,
+        priority,
+        user
+      })
+      setTasks([...upTask])
+    } else {
+      const createdTask = await createTask({
+        title,
+        description,
+        priority,
+        user
+      })
+      setTasks([...tasks, createdTask])
+    }
 
     setToggleForm(false)
   }

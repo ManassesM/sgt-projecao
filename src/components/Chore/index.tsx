@@ -1,6 +1,7 @@
 import { Task } from '@prisma/client'
 import { useToggleForm } from 'context/FormContext'
 import { useTask } from 'context/TaskContext'
+import { useTasks } from 'context/TasksContext'
 import React from 'react'
 import { deleteTask } from 'services/task'
 import * as S from './styles'
@@ -13,10 +14,12 @@ type Props = {
 const Chore: React.FC<Props> = ({ task }) => {
   const { setToggleForm } = useToggleForm()
   const { setTask } = useTask()
+  const { setTasks } = useTasks()
   const { id, title, description, priority } = task
 
   async function handleDelete() {
-    await deleteTask(id)
+    const updatedTasks = await deleteTask(id)
+    setTasks([...updatedTasks])
   }
 
   function handleEdit() {
@@ -25,7 +28,7 @@ const Chore: React.FC<Props> = ({ task }) => {
   }
 
   return (
-    <S.Container onClick={handleEdit}>
+    <S.Container draggable>
       <S.PriorityIcon priority={priority} />
       <S.Title>
         <p>{title}</p>

@@ -10,7 +10,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
   })
 
-  const task = await prisma.task.update({
+  await prisma.task.update({
     where: {
       id: activityId
     },
@@ -22,5 +22,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     }
   })
 
-  return res.status(200).json({ task })
+  const tasks = await prisma.task.findMany({
+    where: {
+      userId: founduser.id.toString()
+    }
+  })
+
+  return res.status(200).json({ tasks })
 }
