@@ -18,22 +18,16 @@ export const Logout = styled(LogoutIcon)`
 `
 
 export const Dropdown = styled.div`
-  position: absolute;
-  bottom: -40px;
-  right: 0;
   width: 90px;
   height: 35px;
 
   background: #f0f0f0;
-  border-radius: 5px;
   padding: 0 8px;
 
   display: flex;
   align-items: center;
-  gap: 10px;
 
   color: #4a70a8;
-  border: 1px solid #4a70a8;
 
   cursor: pointer;
   svg {

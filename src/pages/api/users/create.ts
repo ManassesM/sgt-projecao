@@ -5,6 +5,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   const { email, name, image } = req.body
 
   const users = await prisma.user.findMany()
+  console.log(users)
   const hasUser = users.find(user => user.email === email)
 
   if (!hasUser) {

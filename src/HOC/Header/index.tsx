@@ -3,8 +3,13 @@ import LogoutIcon from '@mui/icons-material/Logout'
 import { getSession, signOut } from 'next-auth/react'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
+
+import React, { MouseEvent, useEffect, useState } from 'react'
+
 import faviconLogo from '../../assets/logo.svg'
+
+import { Popover } from '@mui/material'
+
 import * as S from './styles'
 
 type User = {
@@ -15,7 +20,8 @@ type User = {
 }
 
 const HOCHeader = () => {
-  const [dropDown, setDropDown] = useState(false)
+  const [anchorEl, setAnchorEl] = useState<HTMLDivElement | null>(null)
+
   const [user, setUser] = useState<User | null>(null)
 
   const { route } = useRouter()
@@ -27,6 +33,14 @@ const HOCHeader = () => {
   useEffect(() => {
     getSession().then(data => data && setUser(data?.user))
   }, [])
+
+  const handleClick = (event: MouseEvent<HTMLDivElement>) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
 
   return (
     <>
@@ -43,21 +57,40 @@ const HOCHeader = () => {
         </S.Logo>
         {route === '/app' && (
           <S.User>
-            <S.UserProps>
+            <S.UserProps onClick={handleClick}>
               <p>{user?.name}</p>
               <img
                 src={user?.image}
                 alt="menu de usuário"
-                onClick={() => setDropDown(!dropDown)}
+                onClick={handleClick}
               />
             </S.UserProps>
-
-            {dropDown && (
+            <Popover
+              sx={{ top: '5px' }}
+              open={!!anchorEl}
+              anchorEl={anchorEl}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right'
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+            >
               <S.Dropdown onClick={handleSignOut}>
                 <LogoutIcon sx={{ fontSize: 25 }} />
                 Sair
               </S.Dropdown>
-            )}
+            </Popover>
+
+            {/* {dropDown && (
+              <S.Dropdown onClick={handleSignOut}>
+                <LogoutIcon sx={{ fontSize: 25 }} />
+                Sair
+              </S.Dropdown>
+            )} */}
           </S.User>
         )}
       </S.Bar>
